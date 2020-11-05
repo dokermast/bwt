@@ -15,6 +15,10 @@
 
 git clone
 
+composer install
+
+create && config .env
+
 create DB
 
 php artisan migrate
