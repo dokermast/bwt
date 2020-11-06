@@ -10,15 +10,6 @@ use App\Country;
 
 class MainController extends Controller
 {
-    public function index()
-    {
-        $users = User::whereHas('companies.country', function ($query) {
-            $query->where('countries.name', '=', 'Canada');
-        })->with('companies')->get();
-
-        return view('test', ['users' => $users]);
-    }
-
     public function main()
     {
         return view('main', ['countries' => Country::all()]);
@@ -26,7 +17,7 @@ class MainController extends Controller
 
     public function users()
     {
-        $users = User::all();
+        $users = User::with('companies.country')->get();
 
         return view('users', ['users' => $users]);
     }
